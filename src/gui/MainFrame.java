@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.ImageIcon;
 import oru.inf.InfDB;
-import utils.Frame;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -13,7 +12,6 @@ public class MainFrame extends javax.swing.JFrame {
         
         initComponents();
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
-        Frame.center(this);
         
         disableAllTabs();
         
@@ -145,6 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     

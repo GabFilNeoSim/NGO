@@ -2,7 +2,6 @@ package gui;
 
 import javax.swing.ImageIcon;
 import oru.inf.InfDB;
-import utils.Frame;
 
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -12,7 +11,6 @@ public class LoginFrame extends javax.swing.JFrame {
         this.db = db;
         initComponents();
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
-        Frame.center(this);
     }
     
     // ----- Ändra ej nedenstående kod -----
@@ -86,11 +84,11 @@ public class LoginFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     // ----- Ändra ej ovanstående kod -----
     
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-
         this.setVisible(false);
 
         MainFrame mainFrame = new MainFrame(db);
