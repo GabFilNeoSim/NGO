@@ -15,7 +15,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         disableAllTabs();
         
-        String roll = "employee";
+        String roll = "admin";
         
         switch (roll) {
         
@@ -49,22 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         tpMain = new javax.swing.JTabbedPane();
         pnlStart = new javax.swing.JPanel();
         pnlAccount = new javax.swing.JPanel();
-        tpProject = new javax.swing.JTabbedPane();
-        pnlProjectAll = new javax.swing.JPanel();
-        pnlProjectMy = new javax.swing.JPanel();
-        pnlProjectBoss = new javax.swing.JPanel();
-        tpDepartment = new javax.swing.JTabbedPane();
-        pnlDepartmentEmployee = new javax.swing.JPanel();
-        pnlDepartmentPartner = new javax.swing.JPanel();
-        pnlDepartmentBoss = new javax.swing.JPanel();
-        tpAdmin = new javax.swing.JTabbedPane();
-        pnlAdminEmployee = new javax.swing.JPanel();
-        pnlAdminProject = new javax.swing.JPanel();
-        pnlAdminDepartment = new javax.swing.JPanel();
-        pnlAdminGoals = new javax.swing.JPanel();
-        pnlAdminCountry = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        pnlAdminPartner = new javax.swing.JPanel();
+        pnlProject = new gui.ProjectPanel();
+        pnlDepartment = new gui.DepartmentPanel();
+        pnlAdmin = new gui.AdminPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -104,189 +91,9 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         tpMain.addTab("Konto", pnlAccount);
-
-        javax.swing.GroupLayout pnlProjectAllLayout = new javax.swing.GroupLayout(pnlProjectAll);
-        pnlProjectAll.setLayout(pnlProjectAllLayout);
-        pnlProjectAllLayout.setHorizontalGroup(
-            pnlProjectAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlProjectAllLayout.setVerticalGroup(
-            pnlProjectAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpProject.addTab("Alla projekt", pnlProjectAll);
-
-        javax.swing.GroupLayout pnlProjectMyLayout = new javax.swing.GroupLayout(pnlProjectMy);
-        pnlProjectMy.setLayout(pnlProjectMyLayout);
-        pnlProjectMyLayout.setHorizontalGroup(
-            pnlProjectMyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlProjectMyLayout.setVerticalGroup(
-            pnlProjectMyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpProject.addTab("Mina projekt", pnlProjectMy);
-
-        javax.swing.GroupLayout pnlProjectBossLayout = new javax.swing.GroupLayout(pnlProjectBoss);
-        pnlProjectBoss.setLayout(pnlProjectBossLayout);
-        pnlProjectBossLayout.setHorizontalGroup(
-            pnlProjectBossLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlProjectBossLayout.setVerticalGroup(
-            pnlProjectBossLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpProject.addTab("Projektchef", pnlProjectBoss);
-
-        tpMain.addTab("Projekt", tpProject);
-
-        javax.swing.GroupLayout pnlDepartmentEmployeeLayout = new javax.swing.GroupLayout(pnlDepartmentEmployee);
-        pnlDepartmentEmployee.setLayout(pnlDepartmentEmployeeLayout);
-        pnlDepartmentEmployeeLayout.setHorizontalGroup(
-            pnlDepartmentEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlDepartmentEmployeeLayout.setVerticalGroup(
-            pnlDepartmentEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpDepartment.addTab("Personal", pnlDepartmentEmployee);
-
-        javax.swing.GroupLayout pnlDepartmentPartnerLayout = new javax.swing.GroupLayout(pnlDepartmentPartner);
-        pnlDepartmentPartner.setLayout(pnlDepartmentPartnerLayout);
-        pnlDepartmentPartnerLayout.setHorizontalGroup(
-            pnlDepartmentPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlDepartmentPartnerLayout.setVerticalGroup(
-            pnlDepartmentPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpDepartment.addTab("Partners", pnlDepartmentPartner);
-
-        javax.swing.GroupLayout pnlDepartmentBossLayout = new javax.swing.GroupLayout(pnlDepartmentBoss);
-        pnlDepartmentBoss.setLayout(pnlDepartmentBossLayout);
-        pnlDepartmentBossLayout.setHorizontalGroup(
-            pnlDepartmentBossLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlDepartmentBossLayout.setVerticalGroup(
-            pnlDepartmentBossLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpDepartment.addTab("Projektchef", pnlDepartmentBoss);
-
-        tpMain.addTab("Avdelning", tpDepartment);
-
-        javax.swing.GroupLayout pnlAdminEmployeeLayout = new javax.swing.GroupLayout(pnlAdminEmployee);
-        pnlAdminEmployee.setLayout(pnlAdminEmployeeLayout);
-        pnlAdminEmployeeLayout.setHorizontalGroup(
-            pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAdminEmployeeLayout.setVerticalGroup(
-            pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpAdmin.addTab("Anställda", pnlAdminEmployee);
-
-        javax.swing.GroupLayout pnlAdminProjectLayout = new javax.swing.GroupLayout(pnlAdminProject);
-        pnlAdminProject.setLayout(pnlAdminProjectLayout);
-        pnlAdminProjectLayout.setHorizontalGroup(
-            pnlAdminProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAdminProjectLayout.setVerticalGroup(
-            pnlAdminProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpAdmin.addTab("Projekt", pnlAdminProject);
-
-        javax.swing.GroupLayout pnlAdminDepartmentLayout = new javax.swing.GroupLayout(pnlAdminDepartment);
-        pnlAdminDepartment.setLayout(pnlAdminDepartmentLayout);
-        pnlAdminDepartmentLayout.setHorizontalGroup(
-            pnlAdminDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAdminDepartmentLayout.setVerticalGroup(
-            pnlAdminDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpAdmin.addTab("Avdelning", pnlAdminDepartment);
-
-        javax.swing.GroupLayout pnlAdminGoalsLayout = new javax.swing.GroupLayout(pnlAdminGoals);
-        pnlAdminGoals.setLayout(pnlAdminGoalsLayout);
-        pnlAdminGoalsLayout.setHorizontalGroup(
-            pnlAdminGoalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAdminGoalsLayout.setVerticalGroup(
-            pnlAdminGoalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpAdmin.addTab("Hållbarhetsmål", pnlAdminGoals);
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1186, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlAdminCountryLayout = new javax.swing.GroupLayout(pnlAdminCountry);
-        pnlAdminCountry.setLayout(pnlAdminCountryLayout);
-        pnlAdminCountryLayout.setHorizontalGroup(
-            pnlAdminCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-            .addGroup(pnlAdminCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlAdminCountryLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlAdminCountryLayout.setVerticalGroup(
-            pnlAdminCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-            .addGroup(pnlAdminCountryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlAdminCountryLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        tpAdmin.addTab("Land", pnlAdminCountry);
-
-        javax.swing.GroupLayout pnlAdminPartnerLayout = new javax.swing.GroupLayout(pnlAdminPartner);
-        pnlAdminPartner.setLayout(pnlAdminPartnerLayout);
-        pnlAdminPartnerLayout.setHorizontalGroup(
-            pnlAdminPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAdminPartnerLayout.setVerticalGroup(
-            pnlAdminPartnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
-        tpAdmin.addTab("Partner", pnlAdminPartner);
-
-        tpMain.addTab("Admin", tpAdmin);
+        tpMain.addTab("Projekt", pnlProject);
+        tpMain.addTab("Avdelning", pnlDepartment);
+        tpMain.addTab("Admin", pnlAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -315,24 +122,11 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel pnlAccount;
-    private javax.swing.JPanel pnlAdminCountry;
-    private javax.swing.JPanel pnlAdminDepartment;
-    private javax.swing.JPanel pnlAdminEmployee;
-    private javax.swing.JPanel pnlAdminGoals;
-    private javax.swing.JPanel pnlAdminPartner;
-    private javax.swing.JPanel pnlAdminProject;
-    private javax.swing.JPanel pnlDepartmentBoss;
-    private javax.swing.JPanel pnlDepartmentEmployee;
-    private javax.swing.JPanel pnlDepartmentPartner;
-    private javax.swing.JPanel pnlProjectAll;
-    private javax.swing.JPanel pnlProjectBoss;
-    private javax.swing.JPanel pnlProjectMy;
+    private gui.AdminPanel pnlAdmin;
+    private gui.DepartmentPanel pnlDepartment;
+    private gui.ProjectPanel pnlProject;
     private javax.swing.JPanel pnlStart;
-    private javax.swing.JTabbedPane tpAdmin;
-    private javax.swing.JTabbedPane tpDepartment;
     private javax.swing.JTabbedPane tpMain;
-    private javax.swing.JTabbedPane tpProject;
     // End of variables declaration//GEN-END:variables
 }
