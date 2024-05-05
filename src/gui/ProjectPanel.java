@@ -1,8 +1,13 @@
 package gui;
 
-public class ProjectPanel extends javax.swing.JPanel {
+import oru.inf.InfDB;
 
-    public ProjectPanel() {
+public class ProjectPanel extends javax.swing.JPanel {
+    
+    private final InfDB db;
+    
+    public ProjectPanel(InfDB db) {
+        this.db = db;
         initComponents();
     }
 

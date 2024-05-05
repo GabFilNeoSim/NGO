@@ -9,8 +9,8 @@ public class MainFrame extends javax.swing.JFrame {
     
     public MainFrame(InfDB db) {
         this.db = db;
-        
         initComponents();
+        
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
         
         disableAllTabs();
@@ -49,9 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         tpMain = new javax.swing.JTabbedPane();
         pnlStart = new javax.swing.JPanel();
         pnlAccount = new javax.swing.JPanel();
-        pnlProject = new gui.ProjectPanel();
-        pnlDepartment = new gui.DepartmentPanel();
-        pnlAdmin = new gui.AdminPanel();
+        pnlProject = new gui.ProjectPanel(db);
+        pnlDepartment = new gui.DepartmentPanel(db);
+        pnlAdmin = new gui.AdminPanel(db);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
