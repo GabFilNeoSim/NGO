@@ -1,8 +1,10 @@
 package gui;
 
 import javax.swing.ImageIcon;
+import ngo.User;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import static shared.Shared.CURRENT_USER;
 
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -27,6 +29,9 @@ public class LoginFrame extends javax.swing.JFrame {
             String dbPassword = db.fetchSingle(query);
             
             if (password.equals(dbPassword)) {
+                
+                CURRENT_USER = new User(email);
+                
                 this.setVisible(false);
                 new MainFrame(db).setVisible(true);
                 
