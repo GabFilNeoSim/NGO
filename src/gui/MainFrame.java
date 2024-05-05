@@ -1,44 +1,32 @@
 package gui;
 
+import helpers.TabManager;
 import javax.swing.ImageIcon;
 import oru.inf.InfDB;
 
 public class MainFrame extends javax.swing.JFrame {
 
     private final InfDB db;
+    private TabManager tabManager;
     
     public MainFrame(InfDB db) {
         this.db = db;
         initComponents();
-        
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
+        tabManager = new TabManager(tpMain);
         
-        disableAllTabs();
-        
-        String roll = "admin";
+        String roll = "employee";
         
         switch (roll) {
         
             case "employee":
-                enableTabs(0, 1, 2, 3);
+                tabManager.enable(0, 1, 2, 3);
                 break;
             case "manager":
-                enableTabs(0, 1, 2, 3);
+                tabManager.enable(0, 1, 2, 3);
                 break;
             case "admin":
-                enableTabs(0, 1, 2, 3, 4);
-        }
-    }
-    
-    private void disableAllTabs() {
-        for (int tab = 0; tab < tpMain.getTabCount(); tab++) {
-            tpMain.setEnabledAt(tab, false);
-        }
-    }
-    
-    private void enableTabs(int ...tabs) {
-        for (int tab : tabs) {
-            tpMain.setEnabledAt(tab, true);
+                tabManager.enable(0, 1, 2, 3, 4);
         }
     }
     
