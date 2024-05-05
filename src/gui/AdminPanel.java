@@ -1,13 +1,8 @@
 package gui;
 
-import oru.inf.InfDB;
-
 public class AdminPanel extends javax.swing.JPanel {
     
-    private final InfDB db;
-    
-    public AdminPanel(InfDB db) {
-        this.db = db;
+    public AdminPanel() {
         initComponents();
     }
 
