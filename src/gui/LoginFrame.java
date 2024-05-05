@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.ImageIcon;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -11,6 +12,29 @@ public class LoginFrame extends javax.swing.JFrame {
         this.db = db;
         initComponents();
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
+    }
+    
+    private void login() {
+        //String email = emailField.getText();
+        //String password = new String(passwordField.getPassword());
+
+        String email = "maria.g@example.com";
+        String password = "password123";
+        
+        String query = "SELECT losenord FROM anstalld WHERE epost = '%s'".formatted(email);
+        
+        try {
+            String dbPassword = db.fetchSingle(query);
+            
+            if (password.equals(dbPassword)) {
+                this.setVisible(false);
+                new MainFrame(db).setVisible(true);
+                
+            } else {
+                infoLabel.setText("Fel epost eller lösenord");
+            }
+            
+        } catch (InfException ignored) {}
     }
     
     // ----- Ändra ej nedenstående kod -----
@@ -89,10 +113,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // ----- Ändra ej ovanstående kod -----
     
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        this.setVisible(false);
-
-        MainFrame mainFrame = new MainFrame(db);
-        mainFrame.setVisible(true);
+        login();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
