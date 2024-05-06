@@ -20,10 +20,10 @@ public class MainFrame extends javax.swing.JFrame {
                 tabManager.enable(0, 1, 2);
                 break;
             case Role.Manager:
-                tabManager.enable(0, 1, 2);
+                tabManager.enable(0, 1, 2, 3);
                 break;
             case Role.Admin:
-                tabManager.enable(0, 1, 2);
+                tabManager.enable(0, 1, 2, 3, 4);
         } 
     }
     
