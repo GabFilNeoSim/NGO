@@ -21,8 +21,8 @@ public class LoginFrame extends javax.swing.JFrame {
         //String email = emailField.getText();
         //String password = new String(passwordField.getPassword());
 
-        String email = "maria.g@example.com";
-        String password = "password123";
+        String email = "michael.j@example.com";
+        String password = "password789";
         
         String query = "SELECT losenord FROM anstalld WHERE epost = '%s'".formatted(email);
         
