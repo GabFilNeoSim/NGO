@@ -1,19 +1,20 @@
 package gui;
 
+import helpers.SQL;
 import javax.swing.ImageIcon;
-import ngo.User;
+import models.User;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import static shared.Shared.CURRENT_USER;
 
 public class LoginFrame extends javax.swing.JFrame {
-
+    
     private final InfDB db;
     
-    public LoginFrame(InfDB db) {
-        this.db = db;
+    public LoginFrame() {
         initComponents();
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
+        db = SQL.getInstance().getDB();
     }
     
     private void login() {
@@ -27,13 +28,12 @@ public class LoginFrame extends javax.swing.JFrame {
         
         try {
             String dbPassword = db.fetchSingle(query);
-            
             if (password.equals(dbPassword)) {
                 
-                CURRENT_USER = new User(email);
+                CURRENT_USER = new User(email, password);
                 
                 this.setVisible(false);
-                new MainFrame(db).setVisible(true);
+                new MainFrame().setVisible(true);
                 
             } else {
                 infoLabel.setText("Fel epost eller lösenord");
@@ -42,7 +42,7 @@ public class LoginFrame extends javax.swing.JFrame {
         } catch (InfException ignored) {}
     }
     
-    // ----- Ändra ej nedenstående kod -----
+    // ----- Ändra ej nedanstående kod -----
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

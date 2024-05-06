@@ -2,41 +2,39 @@ package gui;
 
 import helpers.TabManager;
 import javax.swing.ImageIcon;
-import oru.inf.InfDB;
+import models.Role;
+import static shared.Shared.CURRENT_USER;
 
 public class MainFrame extends javax.swing.JFrame {
-
-    private final InfDB db;
+    
     private TabManager tabManager;
     
-    public MainFrame(InfDB db) {
-        this.db = db;
+    public MainFrame() {
         initComponents();
         setIconImage(new ImageIcon("src/icons/icon.png").getImage());
         tabManager = new TabManager(tpMain);
         
-        String roll = "employee";
+        switch (CURRENT_USER.getRole()) {
         
-        switch (roll) {
-        
-            case "employee":
-                tabManager.enable(0, 1, 2, 3);
+            case Role.Employee:
+                tabManager.enable(0, 1, 2);
                 break;
-            case "manager":
-                tabManager.enable(0, 1, 2, 3);
+            case Role.Manager:
+                tabManager.enable(0, 1, 2);
                 break;
-            case "admin":
-                tabManager.enable(0, 1, 2, 3, 4);
-        }
+            case Role.Admin:
+                tabManager.enable(0, 1, 2);
+        } 
     }
     
+    // ----- Ändra ej nedanstående kod -----
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         tpMain = new javax.swing.JTabbedPane();
-        pnlStart = new javax.swing.JPanel();
-        pnlAccount = new javax.swing.JPanel();
+        pnlStart = new gui.StartPanel();
+        pnlAccount = new gui.AccountPanel();
         pnlProject = new gui.ProjectPanel();
         pnlDepartment = new gui.DepartmentPanel();
         pnlAdmin = new gui.AdminPanel();
@@ -52,32 +50,7 @@ public class MainFrame extends javax.swing.JFrame {
         tpMain.setMaximumSize(new java.awt.Dimension(1280, 720));
         tpMain.setMinimumSize(new java.awt.Dimension(1280, 720));
         tpMain.setPreferredSize(new java.awt.Dimension(1280, 720));
-
-        javax.swing.GroupLayout pnlStartLayout = new javax.swing.GroupLayout(pnlStart);
-        pnlStart.setLayout(pnlStartLayout);
-        pnlStartLayout.setHorizontalGroup(
-            pnlStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlStartLayout.setVerticalGroup(
-            pnlStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
-        tpMain.addTab(" Start", new javax.swing.ImageIcon(getClass().getResource("/icons/start.png")), pnlStart, ""); // NOI18N
-        pnlStart.getAccessibleContext().setAccessibleName("");
-
-        javax.swing.GroupLayout pnlAccountLayout = new javax.swing.GroupLayout(pnlAccount);
-        pnlAccount.setLayout(pnlAccountLayout);
-        pnlAccountLayout.setHorizontalGroup(
-            pnlAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
-        );
-        pnlAccountLayout.setVerticalGroup(
-            pnlAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
+        tpMain.addTab("Start", pnlStart);
         tpMain.addTab("Konto", pnlAccount);
         tpMain.addTab("Projekt", pnlProject);
         tpMain.addTab("Avdelning", pnlDepartment);
@@ -107,14 +80,14 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+    // ----- Ändra ej ovanstående kod -----
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel pnlAccount;
+    private gui.AccountPanel pnlAccount;
     private gui.AdminPanel pnlAdmin;
     private gui.DepartmentPanel pnlDepartment;
     private gui.ProjectPanel pnlProject;
-    private javax.swing.JPanel pnlStart;
+    private gui.StartPanel pnlStart;
     private javax.swing.JTabbedPane tpMain;
     // End of variables declaration//GEN-END:variables
 }
