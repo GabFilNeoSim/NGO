@@ -4,6 +4,7 @@ import helpers.SQL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -76,6 +77,11 @@ public class AdminPanel extends javax.swing.JPanel {
         btnSave.setText("Spara");
 
         btnDelete.setText("Ta bort");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlAdminEmployeeLayout = new javax.swing.GroupLayout(pnlAdminEmployee);
         pnlAdminEmployee.setLayout(pnlAdminEmployeeLayout);
@@ -257,7 +263,21 @@ public class AdminPanel extends javax.swing.JPanel {
 
         String aid = employeeList.getSelectedValue().split("-")[0].trim();
         setUpFields(aid);
+        
     }//GEN-LAST:event_employeeListMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int option = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ta bort användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
+        if(option == 0) {
+            String aid = employeeList.getSelectedValue().split("-")[0].trim();
+            String query = "DELETE FROM anstalld, admin, handlaggare WHERE aid = %s".formatted(aid);
+            try {
+                db.delete(query);
+            }
+            catch(InfException ignored){}
+        }
+        System.out.println(option);
+    }//GEN-LAST:event_btnDeleteActionPerformed
     
     private void setUpFields(String aid) {
         String query = "SELECT * from anstalld where aid = %s".formatted(aid);
