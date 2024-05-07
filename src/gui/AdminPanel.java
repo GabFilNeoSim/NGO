@@ -254,7 +254,6 @@ public class AdminPanel extends javax.swing.JPanel {
     // ----- Ändra ej ovanstående kod -----
     
     private void employeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeListMouseClicked
-        // TODO add your handling code here:
 
         String aid = employeeList.getSelectedValue().split("-")[0].trim();
         setUpFields(aid);
