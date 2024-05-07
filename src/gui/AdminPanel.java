@@ -65,6 +65,7 @@ public class AdminPanel extends javax.swing.JPanel {
         lblMessage = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         pnlAdminProject = new javax.swing.JPanel();
         pnlAdminDepartment = new javax.swing.JPanel();
         pnlAdminGoals = new javax.swing.JPanel();
@@ -139,6 +140,8 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("🛈");
+
         javax.swing.GroupLayout pnlAdminEmployeeLayout = new javax.swing.GroupLayout(pnlAdminEmployee);
         pnlAdminEmployee.setLayout(pnlAdminEmployeeLayout);
         pnlAdminEmployeeLayout.setHorizontalGroup(
@@ -164,7 +167,10 @@ public class AdminPanel extends javax.swing.JPanel {
                                                         .addComponent(tfFirstName, javax.swing.GroupLayout.Alignment.LEADING))
                                                     .addComponent(lblEmail)))
                                             .addComponent(lblAddress)))
-                                    .addComponent(lblDate))
+                                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
+                                        .addComponent(lblDate)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1)))
                                 .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
                                         .addGap(44, 44, 44)
@@ -234,7 +240,8 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addGap(31, 31, 31)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDate)
-                            .addComponent(lblDepartment))
+                            .addComponent(lblDepartment)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -612,6 +619,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JList<String> employeeList;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblDate;
