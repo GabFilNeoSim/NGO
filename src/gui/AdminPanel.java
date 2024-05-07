@@ -265,18 +265,37 @@ public class AdminPanel extends javax.swing.JPanel {
         setUpFields(aid);
         
     }//GEN-LAST:event_employeeListMouseClicked
-
+    
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int option = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ta bort användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
         if(option == 0) {
             String aid = employeeList.getSelectedValue().split("-")[0].trim();
-            String query = "DELETE FROM anstalld, admin, handlaggare WHERE aid = %s".formatted(aid);
+
+            String query1 = "UPDATE projekt SET projekt.projektchef = NULL WHERE projekt.projektchef = %s".formatted(aid);
+            String query2 = "DELETE FROM ans_proj WHERE ans_proj.aid = %s".formatted(aid);
+            String query3 = "DELETE FROM admin WHERE admin.aid = %s".formatted(aid);
+            String query4 = "UPDATE handlaggare SET handlaggare.mentor = NULL WHERE handlaggare.aid = %s".formatted(aid);
+            String query5 = "UPDATE avdelning SET avdelning.chef = NULL WHERE avdelning.chef = %s".formatted(aid);
+            String query6 = "DELETE FROM handlaggare WHERE handlaggare.aid = %s".formatted(aid);
+            String query7 = "DELETE FROM anstalld WHERE anstalld.aid = %s".formatted(aid);
+            
             try {
-                db.delete(query);
-            }
-            catch(InfException ignored){}
+                db.update(query1);
+                db.delete(query2);
+                db.delete(query3);
+                db.update(query4);
+                db.update(query5);
+                db.delete(query6);
+                db.delete(query7);
+                
+                DefaultListModel model = (DefaultListModel) employeeList.getModel();
+                int selectedIndex = employeeList.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    model.remove(selectedIndex);
+                }
+                
+            } catch(InfException ignored) {}
         }
-        System.out.println(option);
     }//GEN-LAST:event_btnDeleteActionPerformed
     
     private void setUpFields(String aid) {
