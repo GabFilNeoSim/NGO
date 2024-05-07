@@ -1,11 +1,22 @@
 package gui;
 
+import helpers.SQL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 public class AdminPanel extends javax.swing.JPanel {
     
+    private final InfDB db;
+    
     public AdminPanel() {
         initComponents();
+        db = SQL.getInstance().getDB();
+        kines2();
     }
 
     // ----- Ändra ej nedanstående kod -----
@@ -20,6 +31,8 @@ public class AdminPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>(new DefaultListModel<>());
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         pnlAdminProject = new javax.swing.JPanel();
         pnlAdminDepartment = new javax.swing.JPanel();
         pnlAdminGoals = new javax.swing.JPanel();
@@ -37,36 +50,73 @@ public class AdminPanel extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jList1);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "aid", "Namn", "Epost"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
+
         javax.swing.GroupLayout pnlAdminEmployeeLayout = new javax.swing.GroupLayout(pnlAdminEmployee);
         pnlAdminEmployee.setLayout(pnlAdminEmployeeLayout);
         pnlAdminEmployeeLayout.setHorizontalGroup(
             pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfAddNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfAddNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)))
-                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(905, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(160, 376, Short.MAX_VALUE))
         );
         pnlAdminEmployeeLayout.setVerticalGroup(
             pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(tfAddNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
         );
 
         tpProject.addTab("Anställda", pnlAdminEmployee);
@@ -158,6 +208,57 @@ public class AdminPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    private void kines() {
+        DefaultListModel<String> list = (DefaultListModel<String>) jList1.getModel();
+        
+        String query = """
+                       SELECT anstalld.fornamn, anstalld.efternamn FROM anstalld
+                       JOIN handlaggare ON anstalld.aid = handlaggare.aid
+                       UNION
+                       SELECT anstalld.fornamn, anstalld.efternamn FROM anstalld
+                       JOIN admin ON anstalld.aid = admin.aid;
+                       """;
+        
+        try {
+            ArrayList<HashMap<String,String>> rows = db.fetchRows(query);
+            
+            for (HashMap<String,String> row : rows) {
+                String fullName = row.get("fornamn") + " " + row.get("efternamn");
+                list.addElement(fullName);
+            }
+            
+        } catch (InfException ignored) {}
+        
+        
+    }
+    
+    public void kines2() {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        
+        String query = """
+                       SELECT anstalld.aid, CONCAT(anstalld.fornamn, " " , anstalld.efternamn) AS name FROM anstalld
+                       JOIN handlaggare ON anstalld.aid = handlaggare.aid
+                       UNION
+                       SELECT anstalld.aid, CONCAT(anstalld.fornamn, " ", anstalld.efternamn) AS name FROM anstalld
+                       JOIN admin ON anstalld.aid = admin.aid;
+                       """;
+        
+        try {
+            ArrayList<HashMap<String, String>> rows = db.fetchRows(query);
+           
+            for (HashMap<String, String> row : rows) {
+                //row.keySet();
+                ArrayList rowData = new ArrayList();
+                for (String value : row.values()) {
+                    rowData.add(value);
+                }
+                tableModel.addRow(rowData.toArray());
+            }
+        }  catch (InfException e) {
+            System.out.println(e);
+        }
+    }
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         DefaultListModel<String> list = (DefaultListModel<String>) jList1.getModel();
         list.addElement(tfAddNewEmployee.getText());
@@ -173,6 +274,8 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pnlAdminCountry;
     private javax.swing.JPanel pnlAdminDepartment;
     private javax.swing.JPanel pnlAdminEmployee;

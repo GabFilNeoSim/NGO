@@ -139,4 +139,9 @@ public class User {
             db.update(query);
         } catch (InfException ignored) { }
     }
+    
+    @Override
+    public String toString() {
+        return getFullName();
+    }
 }
