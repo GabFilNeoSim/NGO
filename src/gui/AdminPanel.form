@@ -59,52 +59,72 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="354" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="tfDate" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="tfAddress" alignment="0" pref="200" max="32767" attributes="0"/>
+                                              <Component id="tfDate" alignment="0" pref="200" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="tfEmail" alignment="0" pref="200" max="32767" attributes="0"/>
-                                                      <Component id="lblFirstName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="tfFirstName" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="tfAddress" alignment="0" pref="200" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="tfEmail" alignment="0" pref="200" max="32767" attributes="0"/>
+                                                              <Component id="lblFirstName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="tfFirstName" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
-                                                  <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="lblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPhone" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblLastName" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfLastName" max="32767" attributes="0"/>
+                                                  <Component id="tfPhone" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfID" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lblDepartment" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfDepartment" alignment="0" pref="196" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace pref="76" max="32767" attributes="0"/>
+                                              <Component id="btnClear" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblRole" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbManager" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbAdmin" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="lblDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblPhone" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLastName" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfLastName" max="32767" attributes="0"/>
-                                  <Component id="tfPhone" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfID" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblDepartment" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfDepartment" alignment="0" pref="196" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btnCreate" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnChange" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace pref="342" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="btnSave" min="-2" pref="138" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                              <Component id="lblMessage" min="-2" pref="179" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblRole" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbManager" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbAdmin" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="182" max="32767" attributes="0"/>
                   </Group>
@@ -161,9 +181,13 @@
                               </Group>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnClear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnChange" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="lblMessage" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="587" max="-2" attributes="0"/>
                       </Group>
@@ -185,6 +209,7 @@
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="0"/>
                     </Property>
+                    <Property name="selectionMode" type="int" value="0"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="employeeListMouseClicked"/>
@@ -252,10 +277,13 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfDepartment">
             </Component>
-            <Component class="javax.swing.JButton" name="btnSave">
+            <Component class="javax.swing.JButton" name="btnChange">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Spara"/>
+                <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDelete">
               <Properties>
@@ -284,6 +312,24 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbAdminActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblMessage">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnClear">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#xf6;m f&#xe4;lt"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCreate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Skapa ny"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

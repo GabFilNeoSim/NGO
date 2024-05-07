@@ -2,6 +2,7 @@ package helpers;
 
 import java.security.SecureRandom;
 import java.util.Random;
+import javax.swing.JTextField;
 
 public class Helper {
     
@@ -17,5 +18,33 @@ public class Helper {
         }
 
         return password.toString();
+    }
+    
+    public static boolean hasChanged(String oldValue, String newValue) {
+        return !oldValue.equals(newValue);
+    }
+    
+    public static boolean checkIfAnyValueIsEmpty(String ...values) {
+        for (String value : values) {
+            if (value.isBlank()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static boolean checkIfAnyFieldIsEmpty(JTextField ...fields) {
+        for (JTextField field : fields) {
+            if (field.getText().isBlank()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static void clearTextFields(JTextField ...fields) {
+        for (JTextField field : fields) {
+            field.setText("");
+        }
     }
 }

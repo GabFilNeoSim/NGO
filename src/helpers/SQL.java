@@ -1,5 +1,8 @@
 package helpers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import models.Role;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -36,5 +39,29 @@ public class SQL {
     
     public InfException getException() {
         return exception;
+    }
+    
+    // --- Custom methods ---
+    
+    public HashMap<String, String> getEmployeeByAid(String aid) {
+        
+        String query = "SELECT * from anstalld where aid = %s".formatted(aid);
+        
+        try {
+            return db.fetchRow(query);
+        } catch (InfException ignored) {}
+        
+        return null;
+    }
+    
+    public ArrayList<HashMap<String, String>> getEmployeesByAid(String aid) {
+        
+        String query = "SELECT * from anstalld where aid = %s".formatted(aid);
+        
+        try {
+            return db.fetchRows(query);
+        } catch (InfException ignored) {}
+        
+        return null;
     }
 }
