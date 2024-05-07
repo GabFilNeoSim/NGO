@@ -26,10 +26,7 @@ public class AdminPanel extends javax.swing.JPanel {
         btnChange.setEnabled(false);
         btnDelete.setEnabled(false);
         tfID.setEnabled(false);
-        
-        
-        //lblDate.setToolTipText("TESTAR");
-        tfDate.setToolTipText("TESTAR");
+        lblDate.setToolTipText("yyyy-mm-dd");
     }
 
     // ----- Ändra ej nedanstående kod -----
@@ -65,7 +62,6 @@ public class AdminPanel extends javax.swing.JPanel {
         lblMessage = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         pnlAdminProject = new javax.swing.JPanel();
         pnlAdminDepartment = new javax.swing.JPanel();
         pnlAdminGoals = new javax.swing.JPanel();
@@ -92,7 +88,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
         lblID.setText("AnställningsID");
 
-        lblDate.setText("Anställningsdatum");
+        lblDate.setText("Anställningsdatum 🛈");
 
         lblDepartment.setText("Avdelning");
 
@@ -140,8 +136,6 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("🛈");
-
         javax.swing.GroupLayout pnlAdminEmployeeLayout = new javax.swing.GroupLayout(pnlAdminEmployee);
         pnlAdminEmployee.setLayout(pnlAdminEmployeeLayout);
         pnlAdminEmployeeLayout.setHorizontalGroup(
@@ -167,10 +161,7 @@ public class AdminPanel extends javax.swing.JPanel {
                                                         .addComponent(tfFirstName, javax.swing.GroupLayout.Alignment.LEADING))
                                                     .addComponent(lblEmail)))
                                             .addComponent(lblAddress)))
-                                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                                        .addComponent(lblDate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel1)))
+                                    .addComponent(lblDate))
                                 .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
                                         .addGap(44, 44, 44)
@@ -240,8 +231,7 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addGap(31, 31, 31)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDate)
-                            .addComponent(lblDepartment)
-                            .addComponent(jLabel1))
+                            .addComponent(lblDepartment))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -508,7 +498,7 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        if (Helper.checkIfAnyFieldIsEmpty(tfFirstName, tfLastName, tfEmail, tfPhone, tfAddress, tfID, tfDate, tfDepartment)) {
+        if (Helper.checkIfAnyFieldIsEmpty(tfFirstName, tfLastName, tfEmail, tfPhone, tfAddress, tfDate, tfDepartment)) {
             lblMessage.setText("Inget fält får vara tomt");
             return;
         } else {
@@ -530,14 +520,15 @@ public class AdminPanel extends javax.swing.JPanel {
             
             String query = """
                            INSERT INTO anstalld 
-                           VALUES(%s, '%s', '%s', '%s', '%s', '%s', '%s', %s)
-                           
-                           """.formatted(aid, firstName, lastName, address, email, phone, Helper.generatePassword(11), department);
+                           VALUES(%s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', %s)
+                           """.formatted(aid, firstName, lastName, address, email, phone, date, Helper.generatePassword(11), department);
             db.insert(query);
             
             list.addElement(aid + " - " + firstName + " " + lastName);
             
-        } catch (InfException ignored) {}   
+        } catch (InfException e) {
+            System.out.println(e.getMessage());
+        }   
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void clear() {
@@ -619,7 +610,6 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JList<String> employeeList;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblDate;
