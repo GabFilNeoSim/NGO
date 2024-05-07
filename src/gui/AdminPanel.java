@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import models.Role;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -45,6 +46,9 @@ public class AdminPanel extends javax.swing.JPanel {
         tfDepartment = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        lblRole = new javax.swing.JLabel();
+        rbManager = new javax.swing.JRadioButton();
+        rbAdmin = new javax.swing.JRadioButton();
         pnlAdminProject = new javax.swing.JPanel();
         pnlAdminDepartment = new javax.swing.JPanel();
         pnlAdminGoals = new javax.swing.JPanel();
@@ -80,6 +84,22 @@ public class AdminPanel extends javax.swing.JPanel {
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
+            }
+        });
+
+        lblRole.setText("Role");
+
+        rbManager.setText("Manager");
+        rbManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbManagerActionPerformed(evt);
+            }
+        });
+
+        rbAdmin.setText("Admin");
+        rbAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAdminActionPerformed(evt);
             }
         });
 
@@ -121,7 +141,12 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRole)
+                    .addComponent(rbManager)
+                    .addComponent(rbAdmin))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         pnlAdminEmployeeLayout.setVerticalGroup(
             pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,12 +156,16 @@ public class AdminPanel extends javax.swing.JPanel {
                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFirstName)
-                            .addComponent(lblLastName))
+                            .addComponent(lblLastName)
+                            .addComponent(lblRole))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                            .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbManager))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbAdmin)
+                        .addGap(3, 3, 3)
                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEmail)
                             .addComponent(lblPhone))
@@ -297,12 +326,22 @@ public class AdminPanel extends javax.swing.JPanel {
             } catch(InfException ignored) {}
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void rbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAdminActionPerformed
+        // TODO add your handling code here:
+        rbManager.setSelected(false);
+    }//GEN-LAST:event_rbAdminActionPerformed
+
+    private void rbManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbManagerActionPerformed
+        // TODO add your handling code here:
+        rbManager.setSelected(true);
+    }//GEN-LAST:event_rbManagerActionPerformed
     
     private void setUpFields(String aid) {
         String query = "SELECT * from anstalld where aid = %s".formatted(aid);
         try {
             HashMap<String, String> row = db.fetchRow(query);
-            
+           
             tfFirstName.setText(row.get("fornamn"));
             tfLastName.setText(row.get("efternamn"));
             tfEmail.setText(row.get("epost"));
@@ -311,6 +350,17 @@ public class AdminPanel extends javax.swing.JPanel {
             tfID.setText(row.get("aid"));
             tfDate.setText(row.get("anstallningsdatum"));
             tfDepartment.setText(row.get("avdelning"));
+            
+            switch (fetchRole(aid)) {
+                case Role.Manager:
+                    rbManager.setSelected(true);
+                    rbAdmin.setSelected(false);
+                    break;
+                case Role.Admin:
+                    rbManager.setSelected(false);
+                    rbAdmin.setSelected(true);
+                    break;
+            }
         } catch (InfException ignored) {}
     }
     private void setUpList() {
@@ -335,6 +385,25 @@ public class AdminPanel extends javax.swing.JPanel {
         } catch (InfException ignored) {}    
     }
     
+    private Role fetchRole(String aid) {
+        try {
+            // Kolla admin
+            String adminQuery = "SELECT aid FROM admin WHERE aid = '%s'".formatted(aid);
+            if (db.fetchSingle(adminQuery) != null) {
+                return Role.Admin;
+            }
+            
+            // Kolla handläggare
+            String managerQuery = "SELECT aid FROM handlaggare WHERE aid = '%s'".formatted(aid);
+            if (db.fetchSingle(managerQuery) != null) {
+                return Role.Manager;
+            }
+
+        } catch (InfException ignored) {}
+        
+        return Role.Employee;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -349,12 +418,15 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblRole;
     private javax.swing.JPanel pnlAdminCountry;
     private javax.swing.JPanel pnlAdminDepartment;
     private javax.swing.JPanel pnlAdminEmployee;
     private javax.swing.JPanel pnlAdminGoals;
     private javax.swing.JPanel pnlAdminPartner;
     private javax.swing.JPanel pnlAdminProject;
+    private javax.swing.JRadioButton rbAdmin;
+    private javax.swing.JRadioButton rbManager;
     private javax.swing.JTextField tfAddress;
     private javax.swing.JTextField tfDate;
     private javax.swing.JTextField tfDepartment;
