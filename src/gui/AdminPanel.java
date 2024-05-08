@@ -565,6 +565,9 @@ public class AdminPanel extends javax.swing.JPanel {
         
         // Handläggare
         if (Helper.hasChanged(dbMentor, mentor)) {
+            if (mentor.isBlank()) {
+                mentor = "null";
+            }
             joiner.add("mentor = %s".formatted(mentor));
         }
 
@@ -587,11 +590,9 @@ public class AdminPanel extends javax.swing.JPanel {
         if (Helper.hasChanged(dbRole, rbRole)) {
             switch (rbRole) {
                 case "Manager":
-
                     if (mentor.isBlank()) {
                         mentor = "null";
                     }
-
                     removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
                     addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
 
@@ -609,9 +610,9 @@ public class AdminPanel extends javax.swing.JPanel {
         int option = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
         if(option == 0) {
             try {
-                System.out.println(builder.toString());
-                db.update(builder.toString());
-                
+                if (joiner.length() > 0) {
+                    db.update(builder.toString());
+                }
                 if (!setNullQuery.isBlank()) {
                     db.update(setNullQuery);
                 }
