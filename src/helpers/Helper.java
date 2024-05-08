@@ -1,7 +1,6 @@
 package helpers;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.StringJoiner;
 import javax.swing.DefaultListModel;
@@ -107,7 +106,5 @@ public class Helper {
         }
         
        return error;
-    }
-       
-
+    } 
 }

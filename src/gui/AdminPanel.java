@@ -507,16 +507,13 @@ public class AdminPanel extends javax.swing.JPanel {
         rbRole = "";
          
         if (rbManager.isSelected()) {
-            rbRole = "Manager";
+            rbRole = Role.Manager.toString();
         } else if (rbAdmin.isSelected()) {
-            rbRole = "Admin";
+            rbRole = Role.Admin.toString();
         }
         
         // Handläggare
-        mentor = null;
-        if (!tfMentor.getText().isBlank()) {
-            mentor = tfMentor.getText();
-        }
+        mentor = tfMentor.getText();
         responsibility = tfResponsibility.getText();
         
         StringBuilder builder = new StringBuilder();
@@ -582,27 +579,32 @@ public class AdminPanel extends javax.swing.JPanel {
         String addRoleQuery = "";
         String setNullQuery = "";
         
-        if (Helper.hasChanged(dbRole, rbRole)){
-            switch (rbRole) {
-                case "Manager":
-                    removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
-                    addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
-                    break;
-                case "Admin":
-                    setNullQuery = "UPDATE handlaggare set mentor = null where mentor = %s".formatted(aid);
-                    removeRoleQuery = "DELETE FROM handlaggare WHERE aid = %s".formatted(aid);
-                    addRoleQuery = "INSERT INTO admin values (%s, %s)".formatted(aid, 1);
-                    break;
-            }
-        }
-        
         if (joiner.length() <= 0 && !Helper.hasChanged(dbRole, rbRole)) {
             lblMessage.setText("Inget ändrades");
             return;
         }
         
-        int option = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ta ändra användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
-        
+        switch (rbRole) {
+            case "Manager":
+                
+                if (mentor.isBlank()) {
+                    mentor = null;
+                }
+                
+                removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
+                addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
+                
+                System.out.println(addRoleQuery);
+                
+                break;
+            case "Admin":
+                setNullQuery = "UPDATE handlaggare set mentor = null where mentor = %s".formatted(aid);
+                removeRoleQuery = "DELETE FROM handlaggare WHERE aid = %s".formatted(aid);
+                addRoleQuery = "INSERT INTO admin values (%s, %s)".formatted(aid, 1);
+                break;
+        }
+
+        int option = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
         if(option == 0) {
             try {
                 db.update(builder.toString());
@@ -640,13 +642,11 @@ public class AdminPanel extends javax.swing.JPanel {
             lblMessage.setText("");
         }
         
-        String firstName, lastName, email, phone, address, aid, date, department, mentor, responsiblity;
+        String firstName, lastName, email, phone, address, aid, date, department, mentor, responsibility;
         
         if (rbAdmin.isSelected()) {
             role = Role.Admin;
-            
         } else{
-            rbManager.doClick();
             role = Role.Manager;
         }
         
@@ -660,7 +660,7 @@ public class AdminPanel extends javax.swing.JPanel {
         
         // Mentor
         mentor = tfMentor.getText();
-        responsiblity = ""; // FIX
+        responsibility = tfResponsibility.getText();
         
         
         try {
@@ -681,9 +681,10 @@ public class AdminPanel extends javax.swing.JPanel {
                     roleQuery = "INSERT INTO admin VALUES(%s, %s)".formatted(aid, 1);
                     
                 case Role.Manager:     
-                    roleQuery = "INSERT INTO handlaggare VALUES(%s, '%s', %s)".formatted(aid, responsiblity, mentor);
+                    roleQuery = "INSERT INTO handlaggare VALUES(%s, '%s', %s)".formatted(aid, responsibility, mentor);
             }
             
+            db.insert(roleQuery);
             
             listModel.addElement(aid + " - " + firstName + " " + lastName);
             
