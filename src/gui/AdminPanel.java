@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.StringJoiner;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import models.Role;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -159,66 +160,69 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfDate, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
                                 .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tfAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfDate, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblFirstName, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tfFirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(lblEmail)))
-                                    .addComponent(lblAddress)))
-                            .addComponent(lblDate))
-                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminEmployeeLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tfAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lblFirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(tfFirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(lblEmail)))
+                                            .addComponent(lblAddress)))
+                                    .addComponent(lblDate))
                                 .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRole)
-                                    .addComponent(rbManager))
-                                .addGap(18, 18, 18)
-                                .addComponent(rbAdmin)
-                                .addGap(57, 57, 57))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminEmployeeLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblRole)
+                                            .addComponent(rbManager))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbAdmin)
+                                        .addGap(57, 57, 57))
+                                    .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lblPhone, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfPhone, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblDepartment, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(39, 39, 39)))
+                                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminEmployeeLayout.createSequentialGroup()
+                                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(tfMentor, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfResponsibility, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdminEmployeeLayout.createSequentialGroup()
+                                                .addComponent(lblResponsiblity)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(4, 4, 4))
+                                    .addComponent(lblMentor)
+                                    .addComponent(lblID)
+                                    .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPassword)
+                                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblPhone, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfPhone, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDepartment, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfDepartment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(39, 39, 39)))
-                        .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminEmployeeLayout.createSequentialGroup()
-                                .addGroup(pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tfMentor, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfResponsibility, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdminEmployeeLayout.createSequentialGroup()
-                                        .addComponent(lblResponsiblity)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(4, 4, 4))
-                            .addComponent(lblMentor)
-                            .addComponent(lblID)
-                            .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPassword)
-                            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(315, 315, 315)
+                                .addComponent(btnClear)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete)))
+                        .addGap(77, 77, 77))
                     .addGroup(pnlAdminEmployeeLayout.createSequentialGroup()
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(315, 315, 315)
-                        .addComponent(btnClear)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)))
-                .addGap(77, 77, 77))
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnlAdminEmployeeLayout.setVerticalGroup(
             pnlAdminEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +292,9 @@ public class AdminPanel extends javax.swing.JPanel {
                             .addComponent(btnCreate)
                             .addComponent(btnChange)
                             .addComponent(btnClear)
-                            .addComponent(btnDelete)
-                            .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnDelete))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -437,6 +442,7 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void rbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAdminActionPerformed
+        rbAdmin.setSelected(true);
         rbManager.setSelected(false);
         tfMentor.setEnabled(false);
         tfMentor.setText("");
@@ -446,6 +452,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
     private void rbManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbManagerActionPerformed
         rbManager.setSelected(true);
+        rbAdmin.setSelected(false);
         tfMentor.setEnabled(true);
         tfResponsibility.setEnabled(true);
     }//GEN-LAST:event_rbManagerActionPerformed
@@ -456,8 +463,9 @@ public class AdminPanel extends javax.swing.JPanel {
         }
 
         HashMap<String, String> result = SQL.getInstance().getAllEmployeeInformationByAid(selectedAid);
+        Role roleResult = helpers.SQL.getInstance().getRoleByAid(selectedAid);
         
-        String dbFirstName, dbLastName, dbEmail, dbPhone, dbAddress, dbAID, dbDate, dbDepartment, dbPassword, dbMentor, dbResponsibility;
+        String dbFirstName, dbLastName, dbEmail, dbPhone, dbAddress, dbAID, dbDate, dbDepartment, dbPassword, dbMentor, dbResponsibility, dbRole;
         dbAID = result.get("aid");
         dbFirstName = result.get("fornamn");
         dbLastName = result.get("efternamn");
@@ -467,6 +475,7 @@ public class AdminPanel extends javax.swing.JPanel {
         dbDate = result.get("anstallningsdatum");
         dbDepartment = result.get("avdelning");
         dbPassword = result.get("losenord");
+        dbRole = roleResult.toString();
         
         // Handläggare
         dbMentor = Helper.changeToEmptyStringIfNull(result.get("mentor"));
@@ -479,7 +488,13 @@ public class AdminPanel extends javax.swing.JPanel {
             lblMessage.setText("");
         }
         
-        String firstName, lastName, email, phone, address, aid, date, department, password, mentor, responsibility;
+        String errorMsg = Helper.validateFieldsToInt(tfID, tfDepartment, tfMentor);
+        if (!errorMsg.isBlank()) {
+            lblMessage.setText(errorMsg);
+            return;
+        }
+        
+        String firstName, lastName, email, phone, address, aid, date, department, password, mentor, responsibility, rbRole;
         firstName = tfFirstName.getText();
         lastName = tfLastName.getText();
         email = tfEmail.getText();
@@ -489,9 +504,19 @@ public class AdminPanel extends javax.swing.JPanel {
         date = tfDate.getText();
         department = tfDepartment.getText();
         password = tfPassword.getText();
+        rbRole = "";
+         
+        if (rbManager.isSelected()) {
+            rbRole = "Manager";
+        } else if (rbAdmin.isSelected()) {
+            rbRole = "Admin";
+        }
         
         // Handläggare
-        mentor = tfMentor.getText();
+        mentor = null;
+        if (!tfMentor.getText().isBlank()) {
+            mentor = tfMentor.getText();
+        }
         responsibility = tfResponsibility.getText();
         
         StringBuilder builder = new StringBuilder();
@@ -551,21 +576,47 @@ public class AdminPanel extends javax.swing.JPanel {
         }
 
         builder.append(joiner.toString());
-        
         builder.append(" WHERE anstalld.aid = %s".formatted(aid));
         
-        if (joiner.length() <= 0) {
+        String removeRoleQuery = "";
+        String addRoleQuery = "";
+        String setNullQuery = "";
+        
+        if (Helper.hasChanged(dbRole, rbRole)){
+            switch (rbRole) {
+                case "Manager":
+                    removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
+                    addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
+                    break;
+                case "Admin":
+                    setNullQuery = "UPDATE handlaggare set mentor = null where mentor = %s".formatted(aid);
+                    removeRoleQuery = "DELETE FROM handlaggare WHERE aid = %s".formatted(aid);
+                    addRoleQuery = "INSERT INTO admin values (%s, %s)".formatted(aid, 1);
+                    break;
+            }
+        }
+        
+        if (joiner.length() <= 0 && !Helper.hasChanged(dbRole, rbRole)) {
             lblMessage.setText("Inget ändrades");
             return;
         }
-        
-        System.out.println(builder.toString());
         
         int option = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ta ändra användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
         
         if(option == 0) {
             try {
                 db.update(builder.toString());
+                
+                if (!setNullQuery.isBlank()) {
+                    db.update(setNullQuery);
+                }
+                if (!removeRoleQuery.isBlank()) {
+                    db.delete(removeRoleQuery);
+                }
+                if (!addRoleQuery.isBlank()) {
+                    db.insert(addRoleQuery);
+                }
+                
                 lblMessage.setText("Ändringar sparades");
                 
                 String newListEntry = selectedAid + " - " + firstName + " " + lastName;
@@ -645,6 +696,7 @@ public class AdminPanel extends javax.swing.JPanel {
         Helper.clearTextFields(tfFirstName, tfLastName, tfEmail, tfPhone, tfAddress, tfID, tfDate, tfDepartment, tfPassword, tfResponsibility, tfMentor);
         employeeList.clearSelection();
         selectedAid = "";
+        lblMessage.setText("");
         btnChange.setEnabled(false);
         btnCreate.setEnabled(true);
         btnDelete.setEnabled(false);
@@ -656,7 +708,6 @@ public class AdminPanel extends javax.swing.JPanel {
     }
    
     private void updateFields() {
-        
         HashMap<String, String> result = SQL.getInstance().getAllEmployeeInformationByAid(selectedAid);
         String query = """
                        SELECT mentor from handlaggare
