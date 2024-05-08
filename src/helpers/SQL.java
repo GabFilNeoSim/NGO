@@ -64,4 +64,74 @@ public class SQL {
         
         return null;
     }
+    
+    public HashMap<String, String> getManagerByAid(String aid) {
+        
+        String query = "SELECT * from manager where aid = %s".formatted(aid);
+        
+        try {
+            return db.fetchRow(query);
+        } catch (InfException ignored) {}
+        
+        return null;
+    }
+    
+    public HashMap<String, String> getAdminByAid(String aid) {
+        
+        String query = "SELECT * from admin where aid = %s".formatted(aid);
+        
+        try {
+            return db.fetchRow(query);
+        } catch (InfException ignored) {}
+        
+        return null;
+    }
+    
+    public Role getRoleByAid(String aid) {
+        String query = """
+                       SELECT
+                           CASE
+                               WHEN admin.aid IS NOT NULL THEN 'Admin'
+                               WHEN handlaggare.aid IS NOT NULL THEN 'Handlaggare'
+                           END AS Role
+                       FROM anstalld
+                       LEFT JOIN admin ON anstalld.aid = admin.aid
+                       LEFT JOIN handlaggare ON anstalld.aid = handlaggare.aid
+                       WHERE anstalld.aid = %s;
+                       """.formatted(aid);
+        
+        try {
+            
+            String result = db.fetchSingle(query);
+            
+            switch (result) {
+                case "Admin":
+                    return Role.Admin;
+                case "Handlaggare":
+                    return Role.Manager;
+                default:
+                    return Role.Employee;
+            }
+            
+        } catch (InfException ignored) {}
+        
+        return null;
+    }
+    
+    public HashMap<String, String> getAllEmployeeInformationByAid(String aid) {
+        String query = """
+                       SELECT anstalld.*,  ansvarighetsomrade, mentor, behorighetsniva
+                       FROM anstalld
+                       LEFT JOIN handlaggare ON anstalld.aid = handlaggare.aid
+                       LEFT JOIN admin ON anstalld.aid = admin.aid
+                       WHERE anstalld.aid = %s;
+                       """.formatted(aid);
+  
+        try {
+            return db.fetchRow(query);
+            
+        } catch (InfException ignored) {
+            return null;
+        }
+    }
 }
