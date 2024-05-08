@@ -584,29 +584,32 @@ public class AdminPanel extends javax.swing.JPanel {
             return;
         }
         
-        switch (rbRole) {
-            case "Manager":
-                
-                if (mentor.isBlank()) {
-                    mentor = null;
-                }
-                
-                removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
-                addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
-                
-                System.out.println(addRoleQuery);
-                
-                break;
-            case "Admin":
-                setNullQuery = "UPDATE handlaggare set mentor = null where mentor = %s".formatted(aid);
-                removeRoleQuery = "DELETE FROM handlaggare WHERE aid = %s".formatted(aid);
-                addRoleQuery = "INSERT INTO admin values (%s, %s)".formatted(aid, 1);
-                break;
+        if (Helper.hasChanged(dbRole, rbRole)) {
+            switch (rbRole) {
+                case "Manager":
+
+                    if (mentor.isBlank()) {
+                        mentor = "null";
+                    }
+
+                    removeRoleQuery = "DELETE FROM admin WHERE aid = %s".formatted(aid);
+                    addRoleQuery = "INSERT INTO handlaggare values (%s, '%s', %s)".formatted(aid, responsibility, mentor);
+
+                    System.out.println(addRoleQuery);
+
+                    break;
+                case "Admin":
+                    setNullQuery = "UPDATE handlaggare set mentor = null where mentor = %s".formatted(aid);
+                    removeRoleQuery = "DELETE FROM handlaggare WHERE aid = %s".formatted(aid);
+                    addRoleQuery = "INSERT INTO admin values (%s, %s)".formatted(aid, 1);
+                    break;
+            }
         }
 
         int option = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra användaren?", "Bekräftelse", JOptionPane.YES_NO_OPTION);
         if(option == 0) {
             try {
+                System.out.println(builder.toString());
                 db.update(builder.toString());
                 
                 if (!setNullQuery.isBlank()) {
