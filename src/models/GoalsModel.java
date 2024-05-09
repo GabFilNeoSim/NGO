@@ -16,6 +16,6 @@ public class GoalsModel {
     
     @Override
     public String toString() {
-        return hid + " - "  + name;
+        return name;
     }
 }
