@@ -1,6 +1,6 @@
 package gui;
 
-import helpers.TabManager;
+import managers.TabManager;
 import javax.swing.ImageIcon;
 import models.Role;
 import static shared.Shared.CURRENT_USER;
