@@ -48,11 +48,11 @@ public class MainFrame extends javax.swing.JFrame {
         pnlProject.setLayout(pnlProjectLayout);
         pnlProjectLayout.setHorizontalGroup(
             pnlProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         pnlProjectLayout.setVerticalGroup(
             pnlProjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         tpMain.addTab("Projekt", pnlProject);
@@ -61,26 +61,14 @@ public class MainFrame extends javax.swing.JFrame {
         pnlDepartment.setLayout(pnlDepartmentLayout);
         pnlDepartmentLayout.setHorizontalGroup(
             pnlDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         pnlDepartmentLayout.setVerticalGroup(
             pnlDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         tpMain.addTab("Avdelning", pnlDepartment);
-
-        javax.swing.GroupLayout pnlGoalsLayout = new javax.swing.GroupLayout(pnlGoals);
-        pnlGoals.setLayout(pnlGoalsLayout);
-        pnlGoalsLayout.setHorizontalGroup(
-            pnlGoalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
-        );
-        pnlGoalsLayout.setVerticalGroup(
-            pnlGoalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
-
         tpMain.addTab("Hållbarhetsmål", pnlGoals);
         tpMain.addTab("Admin", pnlAdmin);
 
