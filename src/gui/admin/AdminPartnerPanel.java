@@ -1,12 +1,11 @@
-package gui;
+package gui.admin;
 
-public class StartPanel extends javax.swing.JPanel {
-    
-    public StartPanel() {
+public class AdminPartnerPanel extends javax.swing.JPanel {
+
+    public AdminPartnerPanel() {
         initComponents();
     }
 
-    // ----- Ändra ej nedanstående kod -----
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -15,14 +14,13 @@ public class StartPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    // ----- Ändra ej ovanstående kod -----
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
