@@ -12,11 +12,11 @@ public class ComponentManager {
         }
     }
     
-        public static void updateListEntry(JList list, DefaultListModel<String> model, String newEntry) {
+    public static void updateListEntry(JList list, DefaultListModel<String> model, String newEntry) {
         int selectedIndex = list.getSelectedIndex();
         if (selectedIndex != -1) {
             model.setElementAt(newEntry, selectedIndex);
-        }
+        } 
     }
     
     public static void removeListEntry(JList list, DefaultListModel<String> model) {
@@ -25,5 +25,4 @@ public class ComponentManager {
             model.remove(selectedIndex);
         }
     }
-    
 }
