@@ -2,6 +2,7 @@ package gui.account;
 
 import java.util.HashMap;
 import java.util.StringJoiner;
+import javax.swing.JOptionPane;
 import managers.EmployeeManager;
 import static shared.Shared.SESSION_AID;
 import validators.Validate;
@@ -66,7 +67,17 @@ public class AccountPanel extends javax.swing.JPanel {
         if (joiner.length() <= 0) {
             lblMessage.setText("Inga ändringar har gjorts");
             return;
-        }  
+        }
+        
+        if (JOptionPane.showConfirmDialog(
+                null, 
+                "Är du säker på att du vill göra dessa ändringar?", 
+                "Bekräftelse", 
+                JOptionPane.YES_NO_OPTION) != 0)
+        {   
+            lblMessage.setText("Inga ändringar har gjorts");
+            return;
+        }
         
         if (EmployeeManager.updateEmployee(query)) {
             lblMessage.setText("Ändringar har sparats");
