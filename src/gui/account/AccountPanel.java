@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import managers.EmployeeManager;
 import static shared.Shared.SESSION_AID;
 import utils.KeyValue;
+import utils.MySQL;
 import utils.QueryBuilder;
 import validators.Validate;
 
@@ -12,7 +13,11 @@ public class AccountPanel extends javax.swing.JPanel {
 
     public AccountPanel() {
         initComponents();
-        updateTextFields();
+        
+        // Lösning för NetBeans dåliga Swing GUI designer...
+        if (MySQL.getInstance().getDB() != null) {
+            updateTextFields();
+        }
     }
     
     private void updateTextFields() {
