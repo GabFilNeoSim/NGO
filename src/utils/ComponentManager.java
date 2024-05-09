@@ -3,7 +3,7 @@ package utils;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTextField;
-import models.EmployeeModel;
+import models.*;
 
 public class ComponentManager {
     
@@ -27,10 +27,9 @@ public class ComponentManager {
         } 
     }
     
-    public static void removeListEntry(JList list, DefaultListModel<String> model) {
-        int selectedIndex = list.getSelectedIndex();
-        if (selectedIndex != -1) {
-            model.remove(selectedIndex);
-        }
-    }
+    public static <T> void removeListEntry(JList list, DefaultListModel<T> model) {
+    int selectedIndex = list.getSelectedIndex();
+    if (selectedIndex != -1) {
+        model.remove(selectedIndex);
+    } 
 }
