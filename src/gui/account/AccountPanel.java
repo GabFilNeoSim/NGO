@@ -26,34 +26,45 @@ public class AccountPanel extends javax.swing.JPanel {
     
     private void saveChanges() {
         
+        HashMap<String,String> employee = EmployeeManager.getEmployeeByAid(SESSION_AID);
+        
         StringBuilder builder = new StringBuilder();
         StringJoiner joiner = new StringJoiner(", ");
         
-        builder.append("UPDATE anstalld ");
-        builder.append("SET ");
+        builder.append("UPDATE anstalld SET ");
         
-        if (Validate.hasChanged("", "")) {
-            joiner.add("fornamn = '%s'".formatted(""));
+        if (Validate.hasChanged(employee.get("fornamn"), tfFirstName.getText())) {
+            joiner.add("fornamn = '%s'".formatted(tfFirstName.getText()));
         }
         
-        if (Validate.hasChanged("", "")) {
-            joiner.add("efternamn = '%s'".formatted(""));
+        if (Validate.hasChanged(employee.get("efternamn"), tfLastName.getText())) {
+            joiner.add("efternamn = '%s'".formatted(tfLastName.getText()));
         }
         
-        if (Validate.hasChanged("", "")) {
-            joiner.add("epost = '%s'".formatted(""));
+        if (Validate.hasChanged(employee.get("epost"), tfEmail.getText())) {
+            joiner.add("epost = '%s'".formatted(tfEmail.getText()));
         }
         
-        if (Validate.hasChanged("", "")) {
-            joiner.add("telefon = '%s'".formatted(""));
+        if (Validate.hasChanged(employee.get("telefon"), tfPhone.getText())) {
+            joiner.add("telefon = '%s'".formatted(tfPhone.getText()));
         }
         
-        if (Validate.hasChanged("", "")) {
-            joiner.add("adress = '%s'".formatted(""));
+        if (Validate.hasChanged(employee.get("telefon"), tfAddress.getText())) {
+            joiner.add("adress = '%s'".formatted(tfAddress.getText()));
         }
 
         builder.append(joiner.toString());
-        builder.append(" WHERE anstalld.aid = %s".formatted(""));
+        builder.append(" WHERE anstalld.aid = %s".formatted(SESSION_AID));
+        
+        String query = builder.toString();
+        
+        if (joiner.length() > 0) {
+            EmployeeManager.updateEmployee(query);
+            updateTextFields();
+            
+        } else {
+            lblMessage.setText("Inget ändrades");
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -84,6 +95,11 @@ public class AccountPanel extends javax.swing.JPanel {
         lblPhone.setText("Telefonnummer");
 
         jButton1.setText("Spara");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,6 +153,10 @@ public class AccountPanel extends javax.swing.JPanel {
                 .addGap(194, 194, 194))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        saveChanges();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

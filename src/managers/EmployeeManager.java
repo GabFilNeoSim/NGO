@@ -116,4 +116,15 @@ public class EmployeeManager {
             return null;
         }
     }
+    
+    public static int updateEmployee(String query) {
+        
+        try {
+            db.update(query);
+            return 0;
+            
+        } catch (InfException ignored) {
+            return -1;
+        }
+    }
 }
