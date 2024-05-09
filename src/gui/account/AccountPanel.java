@@ -49,7 +49,7 @@ public class AccountPanel extends javax.swing.JPanel {
             joiner.add("telefon = '%s'".formatted(tfPhone.getText()));
         }
         
-        if (Validate.hasChanged(employee.get("telefon"), tfAddress.getText())) {
+        if (Validate.hasChanged(employee.get("adress"), tfAddress.getText())) {
             joiner.add("adress = '%s'".formatted(tfAddress.getText()));
         }
 
@@ -58,12 +58,17 @@ public class AccountPanel extends javax.swing.JPanel {
         
         String query = builder.toString();
         
-        if (joiner.length() > 0) {
-            EmployeeManager.updateEmployee(query);
+        if (joiner.length() <= 0) {
+            lblMessage.setText("Inga ändringar har gjorts");
+            return;
+        }  
+        
+        if (EmployeeManager.updateEmployee(query)) {
+            lblMessage.setText("Ändringar har sparats");
             updateTextFields();
             
         } else {
-            lblMessage.setText("Inget ändrades");
+            lblMessage.setText("Ändringar gick inte att spara");
         }
     }
     
