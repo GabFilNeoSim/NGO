@@ -5,6 +5,8 @@ import java.util.StringJoiner;
 import javax.swing.JOptionPane;
 import managers.EmployeeManager;
 import static shared.Shared.SESSION_AID;
+import utils.KeyValue;
+import utils.QueryBuilder;
 import validators.Validate;
 
 public class AccountPanel extends javax.swing.JPanel {
@@ -32,53 +34,30 @@ public class AccountPanel extends javax.swing.JPanel {
             return;
         }
         
-        HashMap<String,String> employee = EmployeeManager.getEmployeeByAid(SESSION_AID);
+           HashMap<String,String> dbEmployee = EmployeeManager.getEmployeeByAid(SESSION_AID);
+        HashMap<String,String> newEmployee = new HashMap<>();
         
-        StringBuilder builder = new StringBuilder();
-        StringJoiner joiner = new StringJoiner(", ");
+        newEmployee = QueryBuilder.updateMap(newEmployee, 
+                new KeyValue("adress", tfAddress), 
+                new KeyValue("epost", tfEmail),
+                new KeyValue("fornamn", tfFirstName),
+                new KeyValue("efternamn", tfLastName),
+                new KeyValue("telefon", tfPhone));
+               
+        String query = QueryBuilder.updateQuery(dbEmployee, newEmployee, "anstalld", "aid = %s".formatted(SESSION_AID));
         
-        builder.append("UPDATE anstalld SET ");
+        System.out.println(query);
         
-        if (Validate.hasChanged(employee.get("fornamn"), tfFirstName.getText())) {
-            joiner.add("fornamn = '%s'".formatted(tfFirstName.getText()));
+        if (query.isBlank()) {
+            lblMessage.setText("Inga ändringar har gjorts");
+            return;
         }
         
-        if (Validate.hasChanged(employee.get("efternamn"), tfLastName.getText())) {
-            joiner.add("efternamn = '%s'".formatted(tfLastName.getText()));
-        }
-        
-        if (Validate.hasChanged(employee.get("epost"), tfEmail.getText())) {
-            joiner.add("epost = '%s'".formatted(tfEmail.getText()));
-        }
-        
-        if (Validate.hasChanged(employee.get("telefon"), tfPhone.getText())) {
-            joiner.add("telefon = '%s'".formatted(tfPhone.getText()));
-        }
-        
-        if (Validate.hasChanged(employee.get("adress"), tfAddress.getText())) {
-            joiner.add("adress = '%s'".formatted(tfAddress.getText()));
+        if (JOptionPane.showConfirmDialog(null, "Är du säker på att du vill göra dessa ändringar?", "Bekräftelse", JOptionPane.YES_NO_OPTION) != 0){   
+            lblMessage.setText("Inga ändringar har gjorts");
+            return;
         }
 
-        builder.append(joiner.toString());
-        builder.append(" WHERE anstalld.aid = %s".formatted(SESSION_AID));
-        
-        String query = builder.toString();
-        
-        if (joiner.length() <= 0) {
-            lblMessage.setText("Inga ändringar har gjorts");
-            return;
-        }
-        
-        if (JOptionPane.showConfirmDialog(
-                null, 
-                "Är du säker på att du vill göra dessa ändringar?", 
-                "Bekräftelse", 
-                JOptionPane.YES_NO_OPTION) != 0)
-        {   
-            lblMessage.setText("Inga ändringar har gjorts");
-            return;
-        }
-        
         if (EmployeeManager.updateEmployee(query)) {
             lblMessage.setText("Ändringar har sparats");
             updateTextFields();
