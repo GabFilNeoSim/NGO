@@ -26,7 +26,7 @@ public class GoalsPanel extends javax.swing.JPanel {
     private void setupGoalsList() {
         listModel = (DefaultListModel<GoalsModel>) listGoals.getModel();
         
-        String query = "SELECT hallbarhetsmal.hid, hallbarhetsmal.hid from hallbarhetsmal";
+        String query = "SELECT hallbarhetsmal.hid, hallbarhetsmal.namn FROM hallbarhetsmal";
 
         try {
             ArrayList<HashMap<String,String>> goals = db.fetchRows(query);
@@ -34,7 +34,7 @@ public class GoalsPanel extends javax.swing.JPanel {
             for (HashMap<String,String> goal : goals) {
                 listModel.addElement(new GoalsModel(
                         goal.get("hid"),
-                        goal.get("name")
+                        goal.get("namn")
                 ));
             }
             
