@@ -117,14 +117,14 @@ public class EmployeeManager {
         }
     }
     
-    public static int updateEmployee(String query) {
+    public static boolean updateEmployee(String query) {
         
         try {
             db.update(query);
-            return 0;
+            return true;
             
         } catch (InfException ignored) {
-            return -1;
+            return false;
         }
     }
 }
