@@ -1,7 +1,7 @@
 package gui.admin;
 
 public class AdminPanel extends javax.swing.JPanel {
-
+    
     public AdminPanel() {
         initComponents();
     }
@@ -11,6 +11,9 @@ public class AdminPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tpAdmin = new javax.swing.JTabbedPane();
+        pnlAdminEmployee = new gui.admin.AdminEmployeePanel();
+
+        tpAdmin.addTab("Anställd", pnlAdminEmployee);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -31,6 +34,7 @@ public class AdminPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private gui.admin.AdminEmployeePanel pnlAdminEmployee;
     private javax.swing.JTabbedPane tpAdmin;
     // End of variables declaration//GEN-END:variables
 }

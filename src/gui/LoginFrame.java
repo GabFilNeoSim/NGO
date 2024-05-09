@@ -10,14 +10,16 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
     }
     
+    
+    
     private void login() {
         //String email = tfEmail.getText();
         //String password = new String(pfPassword.getPassword());
 
         String email = "michael.j@example.com";
         String password = "password789";
-
-        HashMap<String, String> employee = EmployeeManager.getEmployeeByEmail(email);
+        
+        HashMap<String, String> employee = EmployeeManager.getLoginInformation(email);
 
         if (password.equals(employee.get("losenord"))) {
 

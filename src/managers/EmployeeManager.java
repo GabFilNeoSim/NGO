@@ -5,7 +5,7 @@ import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import utils.MySQL;
-import utils.Role;
+import models.Role;
 
 public class EmployeeManager {
     
@@ -45,9 +45,9 @@ public class EmployeeManager {
         }
     }
     
-    public static HashMap<String, String> getEmployeeByEmail(String email) {
+    public static HashMap<String, String> getLoginInformation(String email) {
         
-        String query = "SELECT * from anstalld where epost = '%s'".formatted(email);
+        String query = "SELECT aid, losenord from anstalld where epost = '%s'".formatted(email);
         
         try {
             return db.fetchRow(query);

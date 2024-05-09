@@ -2,7 +2,7 @@ package gui;
 
 import managers.EmployeeManager;
 import utils.TabManager;
-import utils.Role;
+import models.Role;
 import static shared.Shared.SESSION_AID;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -82,18 +82,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         tpMain.addTab("Hållbarhetsmål", pnlGoals);
-
-        javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
-        pnlAdmin.setLayout(pnlAdminLayout);
-        pnlAdminLayout.setHorizontalGroup(
-            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
-        );
-        pnlAdminLayout.setVerticalGroup(
-            pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
-
         tpMain.addTab("Admin", pnlAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

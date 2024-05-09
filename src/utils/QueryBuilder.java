@@ -1,5 +1,6 @@
 package utils;
 
+import models.KeyValue;
 import validators.Validate;
 import java.util.HashMap;
 import java.util.StringJoiner;
@@ -17,10 +18,10 @@ public class QueryBuilder {
             
             if (Validate.hasChanged(oldValue, newValue)) {
                 try {
-                     Double.valueOf(newValue);
-                     joiner.add("%s = %s".formatted(key, newValue));
+                    Double.valueOf(newValue);
+                    joiner.add("%s = %s".formatted(key, newValue));
                  } catch (NumberFormatException e) {
-                     joiner.add("%s = '%s'".formatted(key, newValue));
+                    joiner.add("%s = '%s'".formatted(key, newValue));
                  }
             }
         }

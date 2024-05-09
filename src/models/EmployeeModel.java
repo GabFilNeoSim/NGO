@@ -16,6 +16,6 @@ public class EmployeeModel {
     
     @Override
     public String toString() {
-        return aid + "-"  + name;
+        return aid + " - "  + name;
     }
 }

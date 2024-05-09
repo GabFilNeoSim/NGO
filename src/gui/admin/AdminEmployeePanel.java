@@ -1,11 +1,49 @@
 package gui.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import models.EmployeeModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+import utils.MySQL;
 
 public class AdminEmployeePanel extends javax.swing.JPanel {
 
+    private DefaultListModel<EmployeeModel> listModel;
+    private InfDB db;
+    
     public AdminEmployeePanel() {
         initComponents();
+        
+        // Lösning för NetBeans dåliga Swing GUI designer...
+        if (MySQL.getInstance().getDB() != null) {
+            db = MySQL.getInstance().getDB();
+            setupList();
+        }
+    }
+    
+    private void setupList() {
+        listModel = (DefaultListModel<EmployeeModel>) listEmployee.getModel();
+        
+        String query = """
+                       SELECT anstalld.aid, anstalld.fornamn, anstalld.efternamn FROM anstalld
+                       LEFT JOIN handlaggare ON anstalld.aid = handlaggare.aid
+                       LEFT JOIN admin ON anstalld.aid = admin.aid;
+                       """;
+
+        try {
+            ArrayList<HashMap<String,String>> employees = db.fetchRows(query);
+            
+            for (HashMap<String,String> employee : employees) {
+                listModel.addElement(new EmployeeModel(
+                        employee.get("aid"),
+                        employee.get("fornamn"),
+                        employee.get("efternamn")
+                ));
+            }
+            
+        } catch (InfException ignored) {}    
     }
 
     @SuppressWarnings("unchecked")
@@ -18,7 +56,7 @@ public class AdminEmployeePanel extends javax.swing.JPanel {
         btnClear = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         spEmployee = new javax.swing.JScrollPane();
-        listEmployee = new javax.swing.JList<>();
+        listEmployee = new javax.swing.JList<>(new DefaultListModel());
         rbManager = new javax.swing.JRadioButton();
         rbAdmin = new javax.swing.JRadioButton();
         tfAddress = new javax.swing.JTextField();
@@ -280,21 +318,6 @@ public class AdminEmployeePanel extends javax.swing.JPanel {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        
-        
-        listEmployee.putClientProperty("aid", "1");
-        listEmployee.putClientProperty("aid", "2");
-        listEmployee.putClientProperty("aid", "3");
-        listEmployee.putClientProperty("aid", "4");
-        
-        DefaultListModel<String> listModel = (DefaultListModel<String>) listEmployee.getModel();
-        
-
-        
-       
-        
-        
-        
     }//GEN-LAST:event_btnClearActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,7 +338,7 @@ public class AdminEmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblResponsibility;
-    private javax.swing.JList<String> listEmployee;
+    private javax.swing.JList<EmployeeModel> listEmployee;
     private javax.swing.JRadioButton rbAdmin;
     private javax.swing.JRadioButton rbManager;
     private javax.swing.JScrollPane spEmployee;

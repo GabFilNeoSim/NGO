@@ -4,7 +4,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import managers.EmployeeManager;
 import static shared.Shared.SESSION_AID;
-import utils.KeyValue;
+import models.KeyValue;
 import utils.MySQL;
 import utils.QueryBuilder;
 import validators.Validate;
