@@ -34,19 +34,17 @@ public class AccountPanel extends javax.swing.JPanel {
             return;
         }
         
-           HashMap<String,String> dbEmployee = EmployeeManager.getEmployeeByAid(SESSION_AID);
-        HashMap<String,String> newEmployee = new HashMap<>();
+        HashMap<String,String> dbEntry = EmployeeManager.getEmployeeByAid(SESSION_AID);
+        HashMap<String,String> newEntry = new HashMap<>();
         
-        newEmployee = QueryBuilder.updateMap(newEmployee, 
+        newEntry = QueryBuilder.updateMap(newEntry, 
                 new KeyValue("adress", tfAddress), 
                 new KeyValue("epost", tfEmail),
                 new KeyValue("fornamn", tfFirstName),
                 new KeyValue("efternamn", tfLastName),
                 new KeyValue("telefon", tfPhone));
                
-        String query = QueryBuilder.updateQuery(dbEmployee, newEmployee, "anstalld", "aid = %s".formatted(SESSION_AID));
-        
-        System.out.println(query);
+        String query = QueryBuilder.updateQuery(dbEntry, newEntry, "anstalld", "aid = %s".formatted(SESSION_AID));
         
         if (query.isBlank()) {
             lblMessage.setText("Inga ändringar har gjorts");
