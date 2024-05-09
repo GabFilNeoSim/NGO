@@ -3,6 +3,7 @@ package utils;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import models.EmployeeModel;
 
 public class ComponentManager {
     
@@ -16,6 +17,13 @@ public class ComponentManager {
         int selectedIndex = list.getSelectedIndex();
         if (selectedIndex != -1) {
             model.setElementAt(newEntry, selectedIndex);
+        } 
+    }
+    
+    public static void updateListEntry(JList list, DefaultListModel<String> model, EmployeeModel newEntry) {
+        int selectedIndex = list.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model.setElementAt(newEntry.toString(), selectedIndex);
         } 
     }
     
