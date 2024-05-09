@@ -28,8 +28,9 @@ public class ComponentManager {
     }
     
     public static <T> void removeListEntry(JList list, DefaultListModel<T> model) {
-    int selectedIndex = list.getSelectedIndex();
-    if (selectedIndex != -1) {
-        model.remove(selectedIndex);
-    } 
+        int selectedIndex = list.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model.remove(selectedIndex);
+        } 
+    }
 }
