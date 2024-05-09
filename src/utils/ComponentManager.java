@@ -13,11 +13,11 @@ public class ComponentManager {
     }
     
     public static <T> void updateListEntry(JList list, DefaultListModel<T> model, T newEntry) {
-    int selectedIndex = list.getSelectedIndex();
-    if (selectedIndex != -1) {
-        model.setElementAt(newEntry, selectedIndex);
+        int selectedIndex = list.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model.setElementAt(newEntry, selectedIndex);
+        }
     }
-}
     
     public static <T> void removeListEntry(JList list, DefaultListModel<T> model) {
         int selectedIndex = list.getSelectedIndex();
